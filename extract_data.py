@@ -73,13 +73,13 @@ def extract_data(path):
             elements = line.strip().split()
             prefix, a, b = map(int, elements[:3])
             image_a = cv2.imread(
-                'data/train_val/train_val_imgs/{:06d}-{:02d}.JPG'.format(prefix, a))
+                'dataset/train_val/train_val_imgs/{:06d}-{:02d}.JPG'.format(prefix, a))
             image_b = cv2.imread(
-                'data/train_val/train_val_imgs/{:06d}-{:02d}.JPG'.format(prefix, b))
+                'dataset/train_val/train_val_imgs/{:06d}-{:02d}.JPG'.format(prefix, b))
             X[0].append(resize_pad_normalize(image_a))
             X[1].append(resize_pad_normalize(image_b))
             score = float(elements[3])
-            score_vector = [1, 0] if score < 0.5 else [0, 1]
+            score_vector = -1 if score < 0.5 else 1
             Y.append(score_vector)
             if 'valid' in path and score >= 0.3 and score <= 0.7:
                 X[0].pop()
@@ -92,8 +92,8 @@ def extract_data(path):
 
 
 def main():
-    train_path = 'data/train'
-    valid_path = 'data/valid'
+    train_path = 'dataset/train'
+    valid_path = 'dataset/val'
     train_data = load_data('%s.npz' % train_path) if os.path.exists(
         '%s.npz' % train_path) else extract_data('%s.txt' % train_path)
     valid_data = load_data('%s.npz' % valid_path) if os.path.exists(
