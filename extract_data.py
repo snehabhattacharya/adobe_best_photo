@@ -85,7 +85,7 @@ def extract_data(path):
                 X[0].pop()
                 X[1].pop()
                 Y.pop()
-            if c == 1000:
+            if c == 5000:
                 break
     X[0], X[1], Y = map(np.array, [X[0], X[1], Y])
     np.savez(open(path.split(".")[0] + ".npz", "w"), X0=X[0], X1=X[1], Y=Y)
