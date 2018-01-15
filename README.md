@@ -1,4 +1,4 @@
-# adobe_best_photo
+# Detecting the best photo from a series
 
 This project was a part of a course project for the CS 689, advanced machine learning course at UMASS. It is based on the princeton adobe-photo triage project. (http://phototriage.cs.princeton.edu/). 
 The goal is to find the best image from a set of similar images, as a lot of times people take multiple photos of the same scenery and then it's a pain to find the best image of them all. 
